@@ -1,0 +1,79 @@
+CREATE database crudatendimento;
+use crudatendimento;
+drop database crudatendimento;
+drop table servicos;
+create table servicos(
+id_servico int not null auto_increment PRIMARY KEY,
+nome_servico varchar(100) not null,
+descricao varchar(100) not null
+);
+
+create table usuarios(
+id_usuario int not null auto_increment PRIMARY KEY,
+nome_usuario varchar(100) not null,
+cpf char(11) not null,
+email VARCHAR(100) NOT NULL UNIQUE
+);
+drop table atendimentos;
+create table atendimentos(
+id_atendimento int not null auto_increment PRIMARY KEY,
+data_atendimento DATETIME DEFAULT CURRENT_TIMESTAMP,
+id_usuario INT NOT NULL,
+id_servico INT NOT NULL,
+FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+FOREIGN KEY (id_servico) REFERENCES servicos(id_servico)
+);
+
+
+
+-- Inserir usuários
+INSERT INTO usuarios (nome_usuario, cpf, email) VALUES
+('João Silva', '12345678920', 'joao.silva@email.com'),
+('Maria Oliveira', '20987654321', 'maria.oliveira@email.com');
+
+-- Inserir serviços
+INSERT INTO servicos (nome_servico, descricao) VALUES
+('Consulta Médica', 'Consulta com um médico'),
+('Limpeza de Pele', 'Tratamento estético');
+
+-- Inserir atendimentos
+INSERT INTO atendimentos (id_usuario, id_servico) VALUES
+(1, 2),  -- João Silva fez uma Consulta Médica
+(2, 1);  -- Maria Oliveira fez uma Limpeza de Pele
+
+select * from atendimentos;
+
+
+
+
+CREATE TABLE atendimentos (
+    id_atendimento INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    descricao VARCHAR(100) NOT NULL,
+    id_usuario INT NOT NULL,
+    id_servico INT NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES usuarios(id_usuario),
+    FOREIGN KEY (id_servico) REFERENCES servicos(id_servico)  -- Apenas a chave estrangeira que faz sentido
+);
+
+CREATE TABLE atendimentos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    usuario_id INT NOT NULL,
+    servico_id INT NOT NULL,
+    data_atendimento DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (usuario_id) REFERENCES usuarios(id),
+    FOREIGN KEY (servico_id) REFERENCES servicos(id)
+);
+
+CREATE TABLE usuarios (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    telefone VARCHAR(15),
+    data_cadastro DATETIME DEFAULT CURRENT_TIMESTAMP
+);
+CREATE TABLE servicos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    descricao TEXT,
+    preco DECIMAL(10, 2) NOT NULL
+);
