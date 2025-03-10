@@ -1,10 +1,10 @@
 <?php
 
-require './App/Classes/Produtos.php';
+require './App/Classes/Usuario.php';
 //$objUser = new Usuario();
 // print_r($_POST);
 
-$objUser = new Produtos();
+$objUser = new Usuarios();
 
 $dados = $objUser->buscar();
 
@@ -19,7 +19,7 @@ $dados = $objUser->buscar();
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     
-    <title>Produtos Cadastrados</title>
+    <title>Usuarios Cadastrados</title>
     <style>
       #foto_user{
         width:20%;
@@ -54,11 +54,11 @@ $dados = $objUser->buscar();
         </div>
       </nav>
     <div class="p-5 bg-dark text-white">
-        <h1>Produtos</h1>
+        <h1>Usuários</h1>
     
       </div>
     <div class="container">
-        <h1 class="mt-4 text-center">Listar de Produtos</h1>
+        <h1 class="mt-4 text-center">Listar de Usuarios</h1>
     </div>
     <div class="container">
                    
@@ -66,11 +66,9 @@ $dados = $objUser->buscar();
                   <thead>
                     <tr>
                       <th scope="col">ID</th>
-                      <th scope="col">Foto</th>
                       <th scope="col">Nome</th>
-                      <th scope="col">Descriçâo</th>
-                      <th scope="col">Qt Produtos</th>
-                      <th scope="col">Preço</th>
+                      <th scope="col">CPF</th>
+                      <th scope="col">E_mail</th>                  
                       <th scope="col">Editar</th>
                       <th scope="col">Excluir</th>
                     </tr>
@@ -78,18 +76,16 @@ $dados = $objUser->buscar();
                   <tbody>
 
                   <?php
-                    foreach($dados as $produtos){
+                    foreach($dados as $usuario){
                       echo 
                       '
                       <tr>
-                        <th scope="row"> '.$produtos->id_produtos.' </th>
-                        <td> <img id="foto_user" src="'.$produtos->foto.'"> </td>
-                        <td> '.$produtos->nome.' </td>
-                        <td> '.$produtos->descricao.' </td>
-                        <td> '.$produtos->quantidade_em_estoque.' </td>
-                        <td> '.$produtos->preco.' </td>
-                        <td> <a href="./editar_produtos.php?id_user='.$produtos->id_produtos.'" class="btn btn-primary" > <i class="bi bi-pencil-square"></i>  </a>  </td>
-                        <td> <a href="./exlcuir_produtos.php?id_user='.$produtos->id_produtos.'" class="btn btn-danger" > <i class="bi bi-trash3"></i> </a> </td>
+                        <th scope="row"> '.$usuario->id_usuario.' </th>
+                        <td> '.$usuario->nome_usuario.' </td>
+                        <td> '.$usuario->cpf.' </td>
+                        <td> '.$usuario->email.' </td>                        
+                        <td> <a href="./editar_usuarios.php?id_user='.$usuario->id_usuario.'" class="btn btn-primary" > <i class="bi bi-pencil-square"></i>  </a>  </td>
+                        <td> <a href="./exlcuir_usuarios.php?id_user='.$usuario->id_usuario.'" class="btn btn-danger" > <i class="bi bi-trash3"></i> </a> </td>
                       </tr>
                       ';
                     }

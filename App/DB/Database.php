@@ -3,7 +3,7 @@
 Class Database{
     private $conn;
     private string $local = 'localhost';
-    private string $db = 'passcontrol';
+    private string $db = 'crudatendimento';
     private string $user = 'root';
     private string $password = '';
     private $table;
