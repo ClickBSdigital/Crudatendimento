@@ -1,9 +1,16 @@
 <?php
+ini_set('display_errors',1);
+ini_set('display_startup_erros',1);
+error_reporting(E_ALL);
 
 require './App/Classes/Usuario.php';
 
 $objUser  = new Usuario();
 $dados = $objUser ->buscar();
+
+
+echo 'DADOS: ';
+print_r($dados[0]);
 
 ?>
 <!DOCTYPE html>
@@ -58,12 +65,9 @@ $dados = $objUser ->buscar();
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Foto</th>
                     <th scope="col">Nome</th>
                     <th scope="col">CPF</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">Id perfil</th>
+                    <th scope="col">Email</th>                    
                     <th scope="col">Editar</th>
                     <th scope="col">Excluir</th>
                 </tr>
@@ -72,12 +76,10 @@ $dados = $objUser ->buscar();
                 <?php if ($dados && count($dados) > 0): ?>
                     <?php foreach ($dados as $usuario): ?>
                         <tr>
-                            <th scope="row"><?= htmlspecialchars($usuario->id_usuario) ?></th>
-                            <td><img id="foto_user" src="<?= htmlspecialchars($usuario->foto) ?>" alt="Foto de <?= htmlspecialchars($usuario->nome) ?>"></td>
+                            <th scope="row"><?= htmlspecialchars($usuario->id_usuario) ?></th>                            
                             <td><?= htmlspecialchars($usuario->nome) ?></td>
                             <td><?= htmlspecialchars($usuario->cpf) ?></td>
-                            <td><?= htmlspecialchars($usuario->email) ?></td>
-                            <td><?= htmlspecialchars($usuario->id_perfil) ?></td>
+                            <td><?= htmlspecialchars($usuario->email) ?></td>                           
                             <td><a href="./editar_usuario.php?id_user=<?= htmlspecialchars($usuario->id_usuario) ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a></td>
                             <td><a href="./excluir_usuario.php?id_user=<?= htmlspecialchars($usuario->id_usuario) ?>" class="btn btn-danger"><i class="bi bi-trash3"></i></a></td>
                         </tr>

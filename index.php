@@ -138,7 +138,7 @@ if(isset($_POST['cadastrar'])){
                 <button type="reset" class="btn btn-danger">Cancelar</button>
                 </a>
                 <button type="submit" name="cadastrar" class="btn btn-primary">Cadastrar</button>
-                <a href="listar.php">
+                <a href="listar_usuarios.php">
                 <button type="button" class="btn btn-success">Listar</button>
                 </a>
                 <a href="index_cadusuarios.php">

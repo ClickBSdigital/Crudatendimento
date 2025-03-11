@@ -2,6 +2,7 @@ CREATE database crudatendimento;
 use crudatendimento;
 drop database crudatendimento;
 drop table servicos;
+
 create table servicos(
 id_servico int not null auto_increment PRIMARY KEY,
 nome_servico varchar(100) not null,
@@ -14,6 +15,7 @@ nome_usuario varchar(100) not null,
 cpf char(11) not null,
 email VARCHAR(100) NOT NULL UNIQUE
 );
+
 drop table atendimentos;
 create table atendimentos(
 id_atendimento int not null auto_increment PRIMARY KEY,

@@ -4,11 +4,13 @@ require './App/Classes/Usuario.php';
 //$objUser = new Usuario();
 // print_r($_POST);
 
-$objUser = new Usuarios();
+$objUser = new Usuario();
 
 $dados = $objUser->buscar();
 
-//print_r($dados);
+
+echo 'DADOS: ';
+print_r($dados);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -65,32 +67,32 @@ $dados = $objUser->buscar();
               <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th scope="col">ID</th>
+                    
                       <th scope="col">Nome</th>
                       <th scope="col">CPF</th>
-                      <th scope="col">E_mail</th>                  
+                      <th scope="col">Email</th>                  
                       <th scope="col">Editar</th>
                       <th scope="col">Excluir</th>
                     </tr>
                   </thead>
                   <tbody>
 
-                  <?php
-                    foreach($dados as $usuario){
-                      echo 
-                      '
-                      <tr>
-                        <th scope="row"> '.$usuario->id_usuario.' </th>
-                        <td> '.$usuario->nome_usuario.' </td>
-                        <td> '.$usuario->cpf.' </td>
-                        <td> '.$usuario->email.' </td>                        
-                        <td> <a href="./editar_usuarios.php?id_user='.$usuario->id_usuario.'" class="btn btn-primary" > <i class="bi bi-pencil-square"></i>  </a>  </td>
-                        <td> <a href="./exlcuir_usuarios.php?id_user='.$usuario->id_usuario.'" class="btn btn-danger" > <i class="bi bi-trash3"></i> </a> </td>
-                      </tr>
-                      ';
-                    }
-
-                  ?>
+                  <?php if ($dados && count($dados) > 0): ?>
+                    <?php foreach ($dados as $usuario): ?>
+                        <tr>
+                            <th scope="row"><?= htmlspecialchars($usuario->id_usuario) ?></th>                            
+                            <td><?= htmlspecialchars($usuario->nome_usuario) ?></td>
+                            <td><?= htmlspecialchars($usuario->cpf) ?></td>
+                            <td><?= htmlspecialchars($usuario->email) ?></td>                           
+                            <td><a href="./editar_usuario.php?id_user=<?= htmlspecialchars($usuario->id_usuario) ?>" class="btn btn-primary"><i class="bi bi-pencil-square"></i></a></td>
+                            <td><a href="./excluir_usuario.php?id_user=<?= htmlspecialchars($usuario->id_usuario) ?>" class="btn btn-danger"><i class="bi bi-trash3"></i></a></td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="8" class="text-center">Nenhum usuário encontrado.</td>
+                    </tr>
+                <?php endif; ?>
                   </tbody>
                 </table>
            

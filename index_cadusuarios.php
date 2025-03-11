@@ -6,42 +6,19 @@ require './App/Classes/Usuario.php';
 
 if(isset($_POST['cadastrar'])){
 
-  $nome_usuario = $_POST['nome_usuario'];
+  $objUser = new Usuario();
+
+  $nome_usuario = $_POST['nome'];
   $cpf = $_POST['cpf'];
   $email = $_POST['email'];
 
-  // print_r($_POST);
+  $objUser->nome_usuario = $nome_usuario;
+  $objUser->cpf = $cpf;
+  $objUser->email = $email;
 
-  // #########################MANIPULANDO ARQUIVOS COM PHP -- FOTOS --- PDFS ETC########
-
-  // print_r($_FILES);
-  // $arquivo = $_FILES['foto'];
-
-  // if ($arquivo['error']) die ("Falha ao enviar a foto");
-
-  // $pasta = './uploads/fotos/';
-  // $nome_foto = $arquivo['name'];
-  // $novo_nome = uniqid();
-  // $extensao = strtolower(pathinfo($nome_foto, PATHINFO_EXTENSION));
-
-  // if($extensao != 'png' && $extensao != 'jpg' && $extensao != 'jfif' && $extensao != 'jpeg' && $extensao != 'gif' && $extensao != 'webp' && $extensao != 'svg' ) die ("Arquivo inválido!!!");
-
-  // $path = $pasta . $novo_nome . '.' . $extensao;
-  // $foto = move_uploaded_file($arquivo['tmp_name'], $path);
-
-  ########################MANIPULANDO ARQUIVOS COM PHP -- FOTOS --- PDFS ETC########
-  //echo "MOVED: " . $foto;
-
-  // $objProd = new Produtos();
-  // $objProd->nome = $nome;
-  // $objProd->descricao  = $descricao;
-  // $objProd->preco  = $preco;
-  // $objProd->quantidade_em_estoque = $quantidade_em_estoque;
-  // $objProd->foto = $path;
-  
-
-  //print_r($objProd);
-  $res = $objProd->cadastrar();
+  print_r($_POST);
+  print_r($objUser);
+  $res = $objUser->cadastrar();
   if($res){
     echo '<script> alert("Cadastrado com sucesso!!") </script> ';
   }else{
@@ -52,7 +29,7 @@ if(isset($_POST['cadastrar'])){
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -98,19 +75,17 @@ if(isset($_POST['cadastrar'])){
             <form method="POST" enctype="multipart/form-data" >
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome do usuário</label>
-                    <input type="text" class="form-control" id_usuario="nome" name_usuario="nome">
+                    <input type="text" class="form-control" id="nome" name="nome" require>
                 </div>
 
                 <div class="mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" cpf="cpf">
-                </div>
-
-              
+                    <input type="text" class="form-control" id="cpf" name="cpf" require>
+                </div>              
                 
                 <div class="mb-3">
                     <label for="email" class="form-label">E-mail</label>
-                    <input class="form-control" name="email" id="email" email="email">
+                    <input class="form-control" name="email" id="email" name="email" require>
                 </div>
                 
                 <button type="reset" class="btn btn-danger">Cancelar</button>

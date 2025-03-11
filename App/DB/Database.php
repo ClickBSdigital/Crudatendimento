@@ -4,8 +4,8 @@ Class Database{
     private $conn;
     private string $local = 'localhost';
     private string $db = 'crudatendimento';
-    private string $user = 'root';
-    private string $password = '';
+    private string $user = 'devweb';
+    private string $password = 'suporte@22';
     private $table;
 
     function __construct($table = null){
@@ -61,7 +61,8 @@ Class Database{
 
         $query = 'SELECT '.$fields.' FROM '.$this->table. ' '.$where. ' '.$order . ' '.$limit ;
 
-        return $this->execute($query);
+        $res = $this->execute($query);
+        return $res;
     }
 
     public function select_by_id($where = null, $order = null, $limit = null, $fields = '*'){
@@ -103,3 +104,6 @@ Class Database{
         return $res->rowCount();
     }
 }
+
+// $database = new Database();
+// $database->conecta();
