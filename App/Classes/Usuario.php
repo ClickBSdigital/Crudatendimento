@@ -22,15 +22,6 @@ class Usuario {
         return $res;
     }
 
-    // Construtor para inicializar as propriedades
-    // public function __construct(string $nome_usuario = '', string $cpf = '', string $email = '') {
-    //     $this->nome_usuario = $nome_usuario;
-    //     $this->cpf = $cpf;
-    //     $this->email = $email;
-    // }
-
-    
-
     public function buscar($where=null,$order=null,$limit=null){
         $db = new Database('usuario');
         $res = $db->select($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS,self::class);

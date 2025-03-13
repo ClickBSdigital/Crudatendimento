@@ -2,48 +2,24 @@
 
 require './App/Classes/Usuario.php';
 
-if(isset($_GET['id_user'])){
+if(isset($_GET['id_user'])){ //existe algo vindo  via get?
 
-    $id = $_GET['id_user'];
+    $fdp = $_GET['id_user'];
     $objUser = new Usuario();
-    $user_edit = $objUser->buscar_por_id($id);
+    $user_edit = $objUser->buscar_por_id($fdp);
 }
 
 
-if(isset($_POST['editar'])){
+if(isset($_POST['editar'])){ // existe algo vindo via post com a chave editar é o botao submit
 
-    $nome = $_POST['nome'];
+    $nome_usuario = $_POST['nome_usuario'];
     $cpf = $_POST['cpf'];
-    $senha = $_POST['senha'];
     $email = $_POST['email'];
-    $perfil = $_POST['perfil'];
-  
-    #########################MANIPULANDO ARQUIVOS COM PHP -- FOTOS --- PDFS ETC########
-  
-    //print_r($_FILES);
-    $arquivo = $_FILES['foto'];
-  
-    if ($arquivo['error']) die ("Falha ao enviar a foto");
-  
-    $pasta = './uploads/fotos/';
-    $nome_foto = $arquivo['name'];
-    $novo_nome = uniqid();
-    $extensao = strtolower(pathinfo($nome_foto, PATHINFO_EXTENSION));
-  
-    if($extensao != 'png' && $extensao != 'jpg') die ("Arquivo inválido!!!");
-  
-    $path = $pasta . $novo_nome . '.' . $extensao;
-    $foto = move_uploaded_file($arquivo['tmp_name'], $path);
-  
-    ########################MANIPULANDO ARQUIVOS COM PHP -- FOTOS --- PDFS ETC########
-    //echo "MOVED: " . $foto;
 
-    $user_edit->nome = $nome;
-    $user_edit->cpf = $cpf;
-    $user_edit->senha = password_hash($senha,PASSWORD_DEFAULT);
+    $user_edit->nome_usuario = $nome_usuario;
+    $user_edit->cpf = $cpf;    
     $user_edit->email = $email;
-    $user_edit->foto = $path;
-    $user_edit->id_perfil = $perfil;
+   
   
     //print_r($objUser);
     $res = $user_edit->atualizar();
@@ -104,34 +80,20 @@ if(isset($_POST['editar'])){
             <form method="POST" enctype="multipart/form-data" >
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" id="nome" name="nome" value="<?php echo $user_edit->nome; ?>" >
+                    <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" value="<?php echo $user_edit->nome_usuario; ?>" >
                 </div>
-
-                <div class="mb-3">
-                    <label for="foto" class="form-label">Foto</label>
-                    <input type="file" class="form-control" id="foto" name="foto" value="<?php echo $user_edit->foto; ?>" >
-                </div>
-
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" id="email" name="email" value="<?php echo $user_edit->email; ?>" >
                 </div>
+
                 <div class="mb-3">
                     <label for="cpf" class="form-label">CPF</label>
-                    <input type="text" class="form-control" id="cpf" name="cpf" value="<?php echo $user_edit->nome; ?>" >
+                    <input type="text" class="form-control" id="cpf" name="cpf" value="<?php echo $user_edit->cpf; ?>" >
                 </div>
-                <div class="mb-3">
-                    <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha" value="<?php echo $user_edit->nome; ?>" >
-                </div>
-                <div class="mb-3">
-                  <select class="form-select" name="perfil" aria-label="Default select example">
-                    <option selected> <?php echo $user_edit->id_perfil; ?>  </option>
-                    <option value="1">ADM</option>
-                    <option value="2">Peao</option>
-                    <option value="3">Root</option>
-                  </select>
+
+                               
                 </div>
                 <button type="reset" class="btn btn-danger">Cancelar</button>
                 <button type="submit" name="editar" class="btn btn-primary">Salvar</button>

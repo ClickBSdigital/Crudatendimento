@@ -1,7 +1,5 @@
 <?php
 
-require './App/DB/Database.php';
-require './App/Classes/Servico.php';
 require './App/Classes/Atendimento.php';
 
 if(isset($_GET['id_user'])){

@@ -1,19 +1,8 @@
 <?php
 
-require './App/Classes/Usuario.php';
+require './App/Classes/Atendimento.php';
 //$objUser = new Usuario();
 // print_r($_POST);
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset($_POST["nome_usuario"])) {
-      $nome_usuario = $_POST["nome_usuario"];
-  } else {
-      echo "Erro: O campo nome_usuario não foi enviado!";
-      exit();
-  }
-}
-
-
 
 if(isset($_POST['cadastrar'])){
 
@@ -21,7 +10,7 @@ if(isset($_POST['cadastrar'])){
   $cpf = $_POST['cpf'];
   $email = $_POST['email'];
 
-  $objUser = new Usuario ();
+  $objProd = new Usuario ();
   $objUser->nome_usuario = $nome_usuario;
   $objUser->cpf = $cpf;
   $objUser->email = $email;
@@ -85,7 +74,7 @@ if(isset($_POST['cadastrar'])){
             <form method="POST" enctype="multipart/form-data" >
                 <div class="mb-3">
                     <label for="nome" class="form-label">Nome do usuário</label>
-                    <input type="text" class="form-control" id="nome_usuario" name="nome_usuario" require>
+                    <input type="text" class="form-control" id="nome" name="nome" require>
                 </div>
 
                 <div class="mb-3">

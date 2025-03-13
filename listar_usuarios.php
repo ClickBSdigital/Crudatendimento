@@ -1,16 +1,11 @@
 <?php
-
 require './App/Classes/Usuario.php';
 //$objUser = new Usuario();
 // print_r($_POST);
-
 $objUser = new Usuario();
-
 $dados = $objUser->buscar();
-
-
-echo 'DADOS: ';
-print_r($dados);
+//echo 'DADOS: ';
+//print_r($dados);
 ?>
 <!DOCTYPE html>
 <html lang="en">
