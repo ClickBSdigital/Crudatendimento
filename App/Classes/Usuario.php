@@ -9,14 +9,8 @@ class Usuario {
     public string $cpf;
     public string $email;
 
-    // Construtor para inicializar as propriedades
-    public function __construct(string $nome_usuario = '', string $cpf = '', string $email = '') {
-        $this->nome_usuario = $nome_usuario;
-        $this->cpf = $cpf;
-        $this->email = $email;
-    }
-
     public function cadastrar() {
+
         $db = new Database('usuario');
         $res = $db->insert(
             [
@@ -28,20 +22,46 @@ class Usuario {
         return $res;
     }
 
+    // Construtor para inicializar as propriedades
+    // public function __construct(string $nome_usuario = '', string $cpf = '', string $email = '') {
+    //     $this->nome_usuario = $nome_usuario;
+    //     $this->cpf = $cpf;
+    //     $this->email = $email;
+    // }
+
+    
+
     public function buscar($where=null,$order=null,$limit=null){
         $db = new Database('usuario');
-        $res = $db->select($where,$order,$limit)->fetchAll(PDO::FETCH_CLASS,self::class);
+        $res = $db->select($where, $order, $limit)->fetchAll(PDO::FETCH_CLASS,self::class);
         return $res;
     }
 
 
     public function buscar_por_id($id_usuario) {
         $db = new Database('usuario');
-        // Usando prepared statement para evitar injeção de SQL
-        $stmt = $db->prepare('SELECT * FROM usuario WHERE id_usuario = :id_usuario');
-        $stmt->bindParam(':id_usuario', $id_usuario, PDO::PARAM_INT);
-        $stmt->execute();
-        $obj = $stmt->fetchObject(self::class);
-        return $obj; // Retorna um objeto da CLASSE USUARIO
+        $obj = $db->select('id_usuario ='.$id_usuario)->fetchObject(self::class);
+        return $obj; //retorna um objeto da CLASSE USUARIO!!!!
+    }
+
+    public function atualizar(){
+        $db = new Database('usuario');
+
+        $res = $db->update('id_usuario ='.$this->id_usuario,
+                            [
+                                "nome_usuario" => $this->nome_usuario,                                
+                                "cpf" => $this->cpf,
+                                "email" => $this->email,                              
+                            
+                            ]
+                        );
+
+        return $res;
+    }
+
+    public function excluir(){
+        $db = new Database('usuario');
+        $res = $db->delete('id_usuario ='.$this->id_usuario);
+        return $res;
     }
 }

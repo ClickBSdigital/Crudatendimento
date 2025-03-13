@@ -6,12 +6,11 @@ require './App/Classes/Usuario.php';
 
 if(isset($_POST['cadastrar'])){
 
-  $objUser = new Usuario();
-
-  $nome_usuario = $_POST['nome'];
+  $nome_usuario = $_POST['nome_usuario'];
   $cpf = $_POST['cpf'];
   $email = $_POST['email'];
 
+  $objProd = new Usuario ();
   $objUser->nome_usuario = $nome_usuario;
   $objUser->cpf = $cpf;
   $objUser->email = $email;

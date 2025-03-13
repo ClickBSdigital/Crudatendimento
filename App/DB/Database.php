@@ -36,74 +36,74 @@ Class Database{
         }
     }
 
-    public function insert($values){
-        // quebrar o array associativo que veio como parametro
-        $fields = array_keys($values);
+//     public function insert($values){
+//         // quebrar o array associativo que veio como parametro
+//         $fields = array_keys($values);
 
-        $binds = array_pad([], count($fields), '?');
+//         $binds = array_pad([], count($fields), '?');
 
-        $query = 'INSERT INTO '.$this->table . '('.implode(',',$fields).') VALUES ('.implode(',',$binds).')';
+//         $query = 'INSERT INTO '.$this->table . '('.implode(',',$fields).') VALUES ('.implode(',',$binds).')';
 
-        $res = $this->execute($query, array_values($values));
+//         $res = $this->execute($query, array_values($values));
 
-        if($res){
-            return true;
-        }else{
-            return false;
-        }
-    }
-
-
-    public function select($where = null, $order = null, $limit = null, $fields = '*'){
-        $where = strlen($where) ? 'WHERE '.$where : '';
-        $order = strlen($order) ? 'ORDER BY '.$order : '';
-        $limit = strlen($limit) ? 'LIMIT '.$limit : '';
-
-        $query = 'SELECT '.$fields.' FROM '.$this->table. ' '.$where. ' '.$order . ' '.$limit ;
-
-        $res = $this->execute($query);
-        return $res;
-    }
-
-    public function select_by_id($where = null, $order = null, $limit = null, $fields = '*'){
-        $where = strlen($where) ? 'WHERE '.$where : '';
-        $order = strlen($order) ? 'ORDER BY '.$order : '';
-        $limit = strlen($limit) ? 'LIMIT '.$limit : '';
-
-        $query = 'SELECT '.$fields.' FROM '.$this->table. ' '.$where. ' '.$order . ' '.$limit ;
-
-        return $this->execute($query)->fetch(PDO::FETCH_ASSOC);
-    }
+//         if($res){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     }
 
 
-    public function delete($where){
-        //Montar a query
+//     public function select($where = null, $order = null, $limit = null, $fields = '*'){
+//         $where = strlen($where) ? 'WHERE '.$where : '';
+//         $order = strlen($order) ? 'ORDER BY '.$order : '';
+//         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
 
-        $query = 'DELETE FROM '.$this->table. ' WHERE '.$where;
-        $del = $this->execute($query);
-        $del = $del->rowCount();
+//         $query = 'SELECT '.$fields.' FROM '.$this->table. ' '.$where. ' '.$order . ' '.$limit ;
 
-        if($del == 1){
-            return true;
-        }else{
-            return false;
-        }
-    }
+//         $res = $this->execute($query);
+//         return $res;
+//     }
 
-    public function update($where, $array){
-        //Extraindo as chaves, coluna
-        $fields = array_keys($array);
-        $values = array_values($array);
-        //Montar Query
-        $query = 'UPDATE '.$this->table.' SET '.implode('=?,',$fields). '=? WHERE '. $where;
+//     public function select_by_id($where = null, $order = null, $limit = null, $fields = '*'){
+//         $where = strlen($where) ? 'WHERE '.$where : '';
+//         $order = strlen($order) ? 'ORDER BY '.$order : '';
+//         $limit = strlen($limit) ? 'LIMIT '.$limit : '';
 
-        //DEBUG
-        // echo $query; // exit;
-        $res = $this->execute($query, $values);
+//         $query = 'SELECT '.$fields.' FROM '.$this->table. ' '.$where. ' '.$order . ' '.$limit ;
+
+//         return $this->execute($query)->fetch(PDO::FETCH_ASSOC);
+//     }
+
+
+//     public function delete($where){
+//         //Montar a query
+
+//         $query = 'DELETE FROM '.$this->table. ' WHERE '.$where;
+//         $del = $this->execute($query);
+//         $del = $del->rowCount();
+
+//         if($del == 1){
+//             return true;
+//         }else{
+//             return false;
+//         }
+//     }
+
+//     public function update($where, $array){
+//         //Extraindo as chaves, coluna
+//         $fields = array_keys($array);
+//         $values = array_values($array);
+//         //Montar Query
+//         $query = 'UPDATE '.$this->table.' SET '.implode('=?,',$fields). '=? WHERE '. $where;
+
+//         //DEBUG
+//         // echo $query; // exit;
+//         $res = $this->execute($query, $values);
         
-        return $res->rowCount();
-    }
+//         return $res->rowCount();
+//     }
 }
 
-// $database = new Database();
-// $database->conecta();
+// // $database = new Database();
+// // $database->conecta();
