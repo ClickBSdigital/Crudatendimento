@@ -11,33 +11,13 @@ if(isset($_POST['cadastrar'])){
   $email = $_POST['email'];
   
 
-  #########################MANIPULANDO ARQUIVOS COM PHP -- FOTOS --- PDFS ETC########
-
-  //print_r($_FILES);
-  // $arquivo = $_FILES['foto'];
-
-  // if ($arquivo['error']) die ("Falha ao enviar a foto");
-
-  // $pasta = './uploads/fotos/';
-  // $nome_foto = $arquivo['name'];
-  // $novo_nome = uniqid();
-  // $extensao = strtolower(pathinfo($nome_foto, PATHINFO_EXTENSION));
-
-  // if($extensao != 'png' && $extensao != 'jpg') die ("Arquivo inválido!!!");
-
-  // $path = $pasta . $novo_nome . '.' . $extensao;
-  // $foto = move_uploaded_file($arquivo['tmp_name'], $path);
-
-  ########################MANIPULANDO ARQUIVOS COM PHP -- FOTOS --- PDFS ETC########
-  //echo "MOVED: " . $foto;
+  
 
   $objUser = new Usuario();
   $objUser->nome = $nome;
   $objUser->cpf = $cpf;
   $objUser->senha = password_hash($senha,PASSWORD_DEFAULT);
-  // $objUser->email = $email;
-  // $objUser->foto = $path;
-  // $objUser->id_perfil = $perfil;
+  
 
   //print_r($objUser);
   $res = $objUser->cadastrar();
@@ -57,6 +37,7 @@ if(isset($_POST['cadastrar'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="./App/Css/style.css">
     <title>Sistema do Eliandro</title>
 </head>
 <body>
@@ -69,7 +50,7 @@ if(isset($_POST['cadastrar'])){
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <a class="nav-link active" aria-current="page" href="index.php">Home</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="#">Sobre</a>
@@ -88,7 +69,56 @@ if(isset($_POST['cadastrar'])){
     <div class="p-5 bg-dark text-white">
         <h1>Sistema do Eliandro</h1>
     
+    </div>
+  
+    <div class="container2">
+      <div class="container3">
+        <div class="title delay0">O</div>
+        <div class="space"></div>
+        <div class="title delay1">C</div>
+        <div class="title delay2">o</div>
+        <div class="title delay3">m</div>
+        <div class="title delay4">b</div>
+        <div class="title delay5">a</div>
+        <div class="title delay6">t</div>
+        <div class="title delay7">e</div>
+        <div class="space"></div>
+        <div class="title delay8">d</div>
+        <div class="title delay9">e</div>
+        <div class="space"></div>
+        <div class="title delay1">E</div>
+        <div class="title delay2">q</div>
+        <div class="title delay3">u</div>
+        <div class="title delay4">i</div>
+        <div class="title delay5">p</div>
+        <div class="title delay6">e</div>
+        <div class="title delay7">s</div>
+        <div class="space"></div>
+        <div class="title delay8">A</div>
+        <div class="title delay9">R</div>
+        <div class="title delay1">D</div>
+        <div class="title delay2">U</div>
+        <!-- <div class="space"></div> -->
+        <div class="title delay3">I</div>
+        <div class="title delay4">N</div>
+        <div class="title delay5">O</div>
+        <!-- <div class="title delay6">r</div>
+        <div class="space"></div>
+        <div class="title delay7">t</div>
+        <div class="title delay8">h</div>
+        <div class="title delay9">e</div>
+        <div class="space"></div>
+        <div class="title delay0">l</div>
+        <div class="title delay1">a</div>
+        <div class="title delay2">z</div>
+        <div class="title delay3">y</div>
+        <div class="space"></div>
+        <div class="title delay4">d</div>
+        <div class="title delay5">o</div>
+        <div class="title delay6">g</div> -->
+        <div class="title delay7">.</div>
       </div>
+    </div>  
     <div class="container">
         <h1 class="mt-4 text-center">Cadastro de Usuário</h1>
     </div>
@@ -100,15 +130,12 @@ if(isset($_POST['cadastrar'])){
                     <input type="text" class="form-control" id="nome" name="nome">
                 </div>
 
-                <!-- <div class="mb-3">
-                    <label for="foto" class="form-label">Foto</label>
-                    <input type="file" class="form-control" id="foto" name="foto">
-                </div> -->
-
+                
                 <div class="mb-3">
                     <label for="cpf" class="form-label">CPF</label>
                     <input type="text" class="form-control" id="cpf" name="cpf">
                 </div>
+
 
                 <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
@@ -116,24 +143,7 @@ if(isset($_POST['cadastrar'])){
                 </div>
                 
                 <div class="mb-3">
-                    <!-- <label for="senha" class="form-label">Senha</label>
-                    <input type="password" class="form-control" id="senha" name="senha">
-                </div> -->
-                <!-- <div class="mb-3">
-                  <select class="form-select" name="perfil" aria-label="Default select example">
-                    <option selected>Selecione o ID do Perfil</option>
-                    <option value="1">ADM</option>
-                    <option value="2">Peao</option>
-                    <option value="3">Root</option>
-                  </select> -->
-                <!-- <div class="mb-3">
-                  <select class="form-select" name="perfil" aria-label="Default select example">
-                    <option selected>Selecione o ID do Perfil</option>
-                    <option value="1">ADM</option>
-                    <option value="2">Peao</option>
-                    <option value="3">Root</option>
-                  </select> -->
-
+                    
                 <a href="index.php">
                 <button type="reset" class="btn btn-danger">Cancelar</button>
                 </a>
