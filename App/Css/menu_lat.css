@@ -1,0 +1,72 @@
+
+
+
+nav ul{
+    list-style: none;
+    text-align: right;
+    background: #3F51B5;
+
+}
+nav ul li{
+    line-height: 56px;
+}
+
+/* coloriando menu de amburguesa*/
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    display: block;
+    font-size: 20px;
+    padding-right: 5px;
+}
+
+/* generacion del menu lateral*/
+.menu-lateral{
+    top: 0;
+    left: 0;
+    position: fixed;
+    background: #fff;
+    width: 250px;
+    height: 100%;
+    box-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+    display: none;
+   
+}
+.menu-lateral a{
+    display: block;
+    padding-left: 16px;
+    padding-right: 16px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-decoration: none;
+    color: #3F51B5
+}
+
+/* boton cerrado para menu lateral*/
+.menu-lateral .close {
+        text-align: right;
+        font-size: 30px;
+}
+
+
+/*transisiones y efectos visuales*/
+
+.menu-lateral li{
+    transition: all 1s ease;
+}
+/* Efecto de sombra sobre los li*/
+.menu-lateral li:hover{
+    box-shadow: inset 900px 0px 0px rgba(63,81,181,0.9);
+}
+/* cambiar el color del texto , cuando se esta sobre un li*/
+.menu-lateral li:hover a{
+    color: #fff;
+}
+
+
+/* habilitar elmento de carga cuando se precione
+el  boton de amburguesa
+*/
+.menu-lateral:target{
+    display: block;
+}

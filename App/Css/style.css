@@ -1,3 +1,16 @@
+@import url("cards.css");
+@import url("css_conteiner.css");
+@import url("css_login.css");
+@import url("css_menu_lateral.css");
+@import url("grid_img.css");
+@import url("menu_lat.css");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  
+}
 body {
     background-color: #fff8f8;
     margin: 0;
